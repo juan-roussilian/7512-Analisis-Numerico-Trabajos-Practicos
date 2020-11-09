@@ -5,6 +5,7 @@ from matplotlib import pyplot as plt
 def desbloquear_candado(clave):
     for j in range(9999):
         if j == clave:
+            
             print("El candado se desbloqueo en " + str(j) + " intentos")
             break
     return j
@@ -16,7 +17,7 @@ def graficar(experimentos):
         bins = 1000,
         color ="blue",
         edgecolor = "yellow",
-        linewidth=1
+        linewidth = 1
     )
     plt.show()
 
