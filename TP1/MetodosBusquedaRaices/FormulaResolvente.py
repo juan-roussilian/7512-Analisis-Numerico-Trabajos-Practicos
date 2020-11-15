@@ -2,25 +2,25 @@ import math
 
 class FormulaResolvente:
 
-    def __init__(self, primerCoeficiente, segundoCoeficiente, tercerCoeficiente):
-        self.coeficiente1erGrado = primerCoeficiente
-        self.coeficiente2doGrado = segundoCoeficiente
-        self.coeficiente3erGrado = tercerCoeficiente
+    def __init__(self, primer_coef, segundo_coef, tercer_coef):
+        self.coef_segundo_grado = primer_coef
+        self.coef_primer_grado = segundo_coef
+        self.termino_independiente = tercer_coef
 
-    def obtenerRaices(self):
-        return self.__aplicarBhaskara()
+    def obtener_raices(self):
+        return self.__aplicar_Bhaskara()
 
-    def __aplicarBhaskara(self):
-        discriminante = math.pow(self.coeficiente2doGrado, 2) - (4 * self.coeficiente1erGrado * self.coeficiente3erGrado)
+    def __aplicar_Bhaskara(self):
+        discriminante = math.pow(self.coef_primer_grado, 2) - (4 * self.coef_segundo_grado * self.termino_independiente)
 
         if discriminante >= 0:
-            primerRaiz = (-self.coeficiente2doGrado) + (math.sqrt(discriminante)/2 * self.coeficiente1erGrado)
-            segundaRaiz = (-self.coeficiente2doGrado) - (math.sqrt(discriminante)/2 * self.coeficiente1erGrado)
+            primer_raiz = (-(self.coef_primer_grado) + math.sqrt(discriminante)) / (2 * self.coef_segundo_grado)
+            segunda_raiz = (-(self.coef_primer_grado) - math.sqrt(discriminante)) / (2 * self.coef_segundo_grado)
 
-            if primerRaiz == segundaRaiz:
-                return primerRaiz
+            if primer_raiz == segunda_raiz:
+                return primer_raiz
             else:
-                return primerRaiz, segundaRaiz
+                return primer_raiz, segunda_raiz
 
         else:
             return None
