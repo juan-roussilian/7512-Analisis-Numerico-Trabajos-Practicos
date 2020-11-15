@@ -14,8 +14,8 @@ class ResolventeConvencional:
         discriminante = math.pow(self.coef_primer_grado, 2) - (4 * self.coef_segundo_grado * self.termino_independiente)
 
         if discriminante >= 0:
-            primer_raiz = (-(self.coef_primer_grado) + math.sqrt(discriminante)) / (2 * self.coef_segundo_grado)
-            segunda_raiz = (-(self.coef_primer_grado) - math.sqrt(discriminante)) / (2 * self.coef_segundo_grado)
+            primer_raiz = (-self.coef_primer_grado + math.sqrt(discriminante)) / (2 * self.coef_segundo_grado)
+            segunda_raiz = (-self.coef_primer_grado - math.sqrt(discriminante)) / (2 * self.coef_segundo_grado)
 
             if primer_raiz == segunda_raiz:
                 return primer_raiz
