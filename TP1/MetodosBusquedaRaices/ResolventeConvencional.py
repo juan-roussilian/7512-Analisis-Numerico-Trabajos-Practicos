@@ -1,6 +1,6 @@
 import math
 
-class FormulaResolvente:
+class ResolventeConvencional:
 
     def __init__(self, primer_coef, segundo_coef, tercer_coef):
         self.coef_segundo_grado = primer_coef
