@@ -16,4 +16,15 @@ def biseccion_rec(f, inicio, fin, tolerancia, iteraciones):
 def biseccion(f, inicio, fin, tolerancia, iteraciones=-1):
     if f(inicio) * f(fin) >= 0:
         print("Imposible aplicar bisección")
+        return None
     return biseccion_rec(f, inicio, fin, tolerancia, iteraciones - 1)
+
+def f_test_lineal(x):
+    return x-4
+
+def f_test_logaritmica(x):
+    return math.log(x)
+
+def test_biseccion():
+    print(biseccion(f_test_lineal, 2, 20, 0.01))
+    print(biseccion(f_test_logaritmica, 0.1, 20, 0.01))
