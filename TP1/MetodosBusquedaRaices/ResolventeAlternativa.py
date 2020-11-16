@@ -14,13 +14,11 @@ class ResolventeAlternativa:
         discriminante = math.pow(self.coef_primer_grado, 2) - (4 * self.coef_segundo_grado * self.termino_independiente)
 
         if discriminante >= 0:
-            primer_raiz = -2 * self.termino_independiente / (self.coef_primer_grado + math.sqrt(discriminante))
-            segunda_raiz = -2 * self.termino_independiente / (self.coef_primer_grado - math.sqrt(discriminante))
 
-            if primer_raiz == segunda_raiz:
-                return primer_raiz
-            else:
-                return primer_raiz, segunda_raiz
+            primer_raiz =  - 2 * self.termino_independiente / (self.coef_primer_grado + math.sqrt(discriminante))
+            segunda_raiz =  - 2 * self.termino_independiente / (self.coef_primer_grado - math.sqrt(discriminante))
+
+            return primer_raiz, segunda_raiz
 
         else:
             return None
