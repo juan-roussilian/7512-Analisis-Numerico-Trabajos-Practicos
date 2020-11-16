@@ -16,6 +16,4 @@ def biseccion_rec(f, inicio, fin, tolerancia, iteraciones):
 def biseccion(f, inicio, fin, tolerancia, iteraciones=-1):
     if f(inicio) * f(fin) >= 0:
         print("Imposible aplicar bisección")
-    if iteraciones == 0:
-        print("numero invalido de iteraciones")
     return biseccion_rec(f, inicio, fin, tolerancia, iteraciones - 1)
