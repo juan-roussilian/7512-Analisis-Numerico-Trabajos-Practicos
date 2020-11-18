@@ -29,6 +29,6 @@ def test_raices():
     print(secante(f1, (RADIO, 2 * RADIO), 1e-13))
 
     print("Hallando raices de f1 por metodo de punto fijo con tolerancia 1e-5")
-    print(punto_fijo("4.25 * pi * x ** 2 - (pi * x ** 3) / 3 - 180.52", (RADIO, 2 * RADIO), 1e-5, 200))
+    print(punto_fijo("4.25 * pi * x ** 2 - (pi * x ** 3) / 3 - 180.52", (RADIO, 6), 1e-5, 200))
     print("Hallando raices de f1 por metodo de punto fijo con tolerancia 1e-13")
-    print(punto_fijo("4.25 * pi * x ** 2 - (pi * x ** 3) / 3 - 180.52", (RADIO, 2 * RADIO), 1e-13, 200))
+    print(punto_fijo("4.25 * pi * x ** 2 - (pi * x ** 3) / 3 - 180.52", (RADIO, 6), 1e-13, 200))
