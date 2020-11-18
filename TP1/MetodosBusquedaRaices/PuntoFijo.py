@@ -21,7 +21,7 @@ def funcion_es_continua_en_intervalo(f, variable_ppal, intervalo):
                     limite_der != limite_izq or
                     f_evaluada != limite
             ):
-                esContinua = false
+                es_continua = false
         except:
             print("Oops! Ocurrio un problema al buscar continuidad", sys.exc_info()[0])
             es_continua = false
@@ -57,7 +57,7 @@ def derivada_acotada_en_intervalo(g, variable_ppal, intervalo, distancia_entre_x
             cota_mayor = valor
         if(valor < cota_menor):
             cota_menor = valor
-        if(max(abs(cota_menor), abs(cota_mayor) > 1 or max(abs(cota_menor), abs(cota_mayor) < 0 ))):
+        if( max(abs(cota_menor), abs(cota_mayor)) > 1 or min(abs(cota_menor), abs(cota_mayor) ) < 0  ):
             esta_acotada = false
             break
         i += distancia_entre_x
@@ -101,4 +101,4 @@ def punto_fijo(f, intervalo, tolerancia, iteraciones):
 
 if __name__ == "__main__":
 
-    print("la raiz hallada con p fijo es: " +  str(punto_fijo("x/2", (-1, 1), 1e-2, 200)))
+    print("la raiz hallada con p fijo es: " +  str(punto_fijo("x/2", (-1, 2), 1e-2, 200)))
