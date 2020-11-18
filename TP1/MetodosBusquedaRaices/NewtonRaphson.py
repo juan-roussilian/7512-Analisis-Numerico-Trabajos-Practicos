@@ -38,7 +38,7 @@ def f_test_pol(x):
 
 
 def test_nr():
-    print(biseccion(f_test_lineal, 0.1, 20, 0.001))
-    print(newton_raphson(f_test_lineal, 0.1, 20, 0.001))
-    print(newton_raphson(f_test_pol, 0.1, 1000, 0.001))
-    print(newton_raphson(f_test_logaritmica, 0.1, 20, 0.001))
+    print(biseccion(f_test_lineal, (0.1, 20), 0.001))
+    print(newton_raphson(f_test_lineal, (0.1, 20), 0.001))
+    print(newton_raphson(f_test_pol, (0.1, 1000), 0.001))
+    print(newton_raphson(f_test_logaritmica, (0.1, 20), 0.001))
