@@ -7,7 +7,7 @@ import math
 # Debe recibir una funcion dada en expresion de simpy, con variable x
 def funcion_es_continua_en_intervalo(f, variable_ppal, intervalo):
 
-    esContinua = true
+    es_continua = true
 
     for i in range(intervalo[0], intervalo[1]):
         try:
@@ -24,8 +24,8 @@ def funcion_es_continua_en_intervalo(f, variable_ppal, intervalo):
                 esContinua = false
         except:
             print("Oops! Ocurrio un problema al buscar continuidad", sys.exc_info()[0])
-            esContinua = false
-    return  esContinua
+            es_continua = false
+    return  es_continua
 
 
 def funcion_contenida_intervalo(g, variable_ppal, intervalo, distancia_entre_x):
@@ -45,7 +45,7 @@ def funcion_contenida_intervalo(g, variable_ppal, intervalo, distancia_entre_x):
 
 def derivada_acotada_en_intervalo(g, variable_ppal, intervalo, distancia_entre_x):
     esta_acotada = true
-    g_prima = g(variable_ppal).diff(variable_ppal)
+    g_prima = g.diff(variable_ppal)
     g_prima_evaluabe = lambdify(variable_ppal,g_prima)
     i = intervalo[0]
     cota_mayor = - math.inf
@@ -65,16 +65,15 @@ def derivada_acotada_en_intervalo(g, variable_ppal, intervalo, distancia_entre_x
     return esta_acotada
 
 
+def existe_unico_p_fijo(g, variable_ppal, intervalo):
 
-def existe_unico_p_fijo(g,variable_ppal, intervalo):
-
-    if not(funcion_es_continua_en_intervalo(g, variable_ppal, intervalo) or
-           funcion_contenida_intervalo(g, variable_ppal, intervalo, 0.5) or
-           derivada_acotada_en_intervalo(g, variable_ppal, intervalo, 0.5)
+    if (funcion_es_continua_en_intervalo(g, variable_ppal, intervalo) and
+        funcion_contenida_intervalo(g, variable_ppal, intervalo, 0.5) and
+        derivada_acotada_en_intervalo(g, variable_ppal, intervalo, 0.5)
     ):
-        return false
-    else:
         return true
+    else:
+        return false
 
 def obtener_g(f):
     x = symbols('x')
@@ -102,4 +101,4 @@ def punto_fijo(f, intervalo, tolerancia, iteraciones):
 
 if __name__ == "__main__":
 
-    print("la raiz hallada con p fijo es: " +  str(punto_fijo("1/x", (-1,1, 2), 1e-2, 200)))
+    print("la raiz hallada con p fijo es: " +  str(punto_fijo("x/2", (-1, 1), 1e-2, 200)))
