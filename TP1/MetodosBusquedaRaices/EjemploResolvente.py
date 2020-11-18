@@ -13,5 +13,5 @@ if __name__ == "__main__":
 
     # Ejemplo que rompa por punto flotante
 
-    print("\nLas raices son", calcular_raices(1, 1e5, 1e-2))
+    print("\nLas raices son", calcular_raices(1, 1e-7, 1e5))
     # print("\nLas raices son", calculadora.calcular_raices_polinomio_segundo_orden(1e-56,1e20,-1))

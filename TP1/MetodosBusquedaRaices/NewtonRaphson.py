@@ -1,6 +1,5 @@
 from sympy import *
-
-from MetodosBusquedaRaices.Biseccion import biseccion
+from TP1.MetodosBusquedaRaices.Biseccion import biseccion
 
 
 def newton_raphson_rec(f, f_prima, semilla, tolerancia, iteraciones):
@@ -17,11 +16,11 @@ def newton_raphson_rec(f, f_prima, semilla, tolerancia, iteraciones):
     return newton_raphson_rec(f, f_prima, siguiente, tolerancia, iteraciones - 1)
 
 
-def newton_raphson(f, inicio, fin, tolerancia, iteraciones=-1):
+def newton_raphson(f, intervalo, tolerancia, iteraciones=-1):
     x = symbols('x')
     f_prima = f(x).diff(x)
     # tal vez el numero de iteraciones para hallar la semilla se podria determinar dinamicamente
-    semilla = biseccion(f, inicio, fin, tolerancia, 5)
+    semilla = biseccion(f, intervalo[0], intervalo[1], tolerancia, 5)
     print('la semilla inicial fue' + str(semilla))
     return newton_raphson_rec(f, f_prima, semilla, tolerancia, iteraciones)
 

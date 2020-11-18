@@ -1,6 +1,6 @@
 from sympy import *
 
-from MetodosBusquedaRaices.Biseccion import biseccion
+from TP1.MetodosBusquedaRaices.Biseccion  import biseccion
 
 
 def secante_rec(f, primer_semilla, segunda_semilla, tolerancia, iteraciones):
