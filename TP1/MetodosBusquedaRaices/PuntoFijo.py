@@ -10,25 +10,27 @@ def funcion_es_continua_en_intervalo(f, variable_ppal, intervalo, distancia_entr
     es_continua = true
 
     i = intervalo[0]
-    while(i <= intervalo[1]):
-        try:
+
+    try:
+
+        while (i <= intervalo[1]):
             limite_der = limit(f, variable_ppal, i, '+')
             limite_izq = limit(f, variable_ppal, i, '-')
             f_evaluable = lambdify(symbols('x'),f)
             f_evaluada = f_evaluable(i)
             limite  = limit(f, variable_ppal, i)
 
-            if(
-                    limite_der != limite_izq or
-                    f_evaluada != limite
-            ):
+            if( limite_der != limite_izq or f_evaluada != limite):
                 es_continua = false
-                i += distancia_entre_x
-        except:
-            print("Oops! Ocurrio un problema al buscar continuidad", sys.exc_info()[0])
-            es_continua = false
 
-    return  es_continua
+            i += distancia_entre_x
+
+        return es_continua
+
+    except:
+        print("Oops! Ocurrio un problema al buscar continuidad", sys.exc_info()[0])
+        return false
+
 
 
 def funcion_contenida_intervalo(g, variable_ppal, intervalo, distancia_entre_x):
@@ -70,9 +72,9 @@ def derivada_acotada_en_intervalo(g, variable_ppal, intervalo, distancia_entre_x
 
 def existe_unico_p_fijo(g, variable_ppal, intervalo):
 
-    if (funcion_es_continua_en_intervalo(g, variable_ppal, intervalo, 0.5) and
-        funcion_contenida_intervalo(g, variable_ppal, intervalo, 0.5) and
-        derivada_acotada_en_intervalo(g, variable_ppal, intervalo, 0.5)
+    if (funcion_es_continua_en_intervalo(g, variable_ppal, intervalo, 1) and
+        funcion_contenida_intervalo(g, variable_ppal, intervalo, 1) and
+        derivada_acotada_en_intervalo(g, variable_ppal, intervalo, 1)
     ):
         return true
     else:
@@ -95,7 +97,7 @@ def punto_fijo(f, intervalo, tolerancia, iteraciones=-1):
 
     g = obtener_g(f)
     if(existe_unico_p_fijo(g,symbols('x'),intervalo)):
-        semilla = biseccion(lambdify(symbols('x'), g), intervalo, tolerancia, 2)
+        semilla = biseccion(lambdify(symbols('x'), g), intervalo, tolerancia, 3)
         print("La raiz hallada como semilla es: " + str(semilla))
         return punto_fijo_rec(lambdify(symbols('x'),g), semilla, tolerancia, iteraciones)
     else:
@@ -104,4 +106,4 @@ def punto_fijo(f, intervalo, tolerancia, iteraciones=-1):
 
 if __name__ == "__main__":
 
-    print("la raiz hallada con p fijo es: " +  str(punto_fijo("x/2", (-1, 2), 1e-2)))
+    print("la raiz hallada con p fijo es: " +  str(punto_fijo("x/2", (-1, 2), 1e-2, 20)))
