@@ -1,6 +1,6 @@
 from sympy import *
 
-from TP1.MetodosBusquedaRaices.Biseccion  import biseccion
+from TP1.MetodosBusquedaRaices.Biseccion import biseccion
 
 
 def secante_rec(f, primer_semilla, segunda_semilla, tolerancia, iteraciones):
@@ -18,10 +18,10 @@ def secante_rec(f, primer_semilla, segunda_semilla, tolerancia, iteraciones):
     return secante_rec(f, primer_semilla, segunda_semilla, tolerancia, iteraciones - 1)
 
 
-def secante(f, inicio, fin, tolerancia, iteraciones=-1):
+def secante(f, intervalo, tolerancia, iteraciones=-1):
     # tal vez el numero de iteraciones para hallar la semilla se podria determinar dinamicamente
-    primer_semilla = biseccion(f, inicio, fin, tolerancia, 5)
-    segunda_semilla = biseccion(f, inicio, fin, tolerancia, 6)
+    primer_semilla = biseccion(f, intervalo, tolerancia, 2)
+    segunda_semilla = biseccion(f, intervalo, tolerancia, 3)
     return secante_rec(f, primer_semilla, segunda_semilla, tolerancia, iteraciones)
 
 
@@ -38,7 +38,7 @@ def f_test_pol(x):
 
 
 def test_secante():
-    print(biseccion(f_test_lineal, 0.1, 20, 0.001))
-    print(secante(f_test_lineal, 0.1, 20, 0.001))
-    print(secante(f_test_pol, 0.1, 1000, 0.001))
-    print(secante(f_test_logaritmica, 0.1, 20, 0.001))
+    print(biseccion(f_test_lineal, (0.1, 20), 0.001))
+    print(secante(f_test_lineal, (0.1, 20), 0.001))
+    print(secante(f_test_pol, (0.1, 1000), 0.001))
+    print(secante(f_test_logaritmica, (0.1, 20), 0.001))

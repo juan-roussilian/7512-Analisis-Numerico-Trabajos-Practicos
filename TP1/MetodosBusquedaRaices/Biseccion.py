@@ -30,5 +30,5 @@ def f_test_logaritmica(x):
 
 
 def test_biseccion():
-    print(biseccion(f_test_lineal, 2, 20, 0.01))
-    print(biseccion(f_test_logaritmica, 0.1, 20, 0.01))
+    print(biseccion(f_test_lineal, (2, 20), 0.01))
+    print(biseccion(f_test_logaritmica, (0.1, 20), 0.01))
