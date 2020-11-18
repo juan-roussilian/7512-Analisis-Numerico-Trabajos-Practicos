@@ -11,14 +11,16 @@ def desbloquear_candado(clave):
 
 
 def graficar(experimentos):
-    plt.title("histograma")
+    plt.title("Histograma de intentos")
     plt.hist(
         experimentos,
         bins=1000,
         color="blue",
-        edgecolor="yellow",
+        edgecolor="green",
         linewidth=1
     )
+    plt.xlabel("Intentos requeridos")
+    plt.ylabel("Experimentos realizados")
     plt.show()
 
 
