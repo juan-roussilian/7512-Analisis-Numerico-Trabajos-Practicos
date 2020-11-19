@@ -20,7 +20,7 @@ def graficar(experimentos):
         linewidth=1
     )
     plt.xlabel("Intentos requeridos")
-    plt.ylabel("Experimentos realizados")
+    plt.ylabel("Experimentos")
     plt.show()
 
 
