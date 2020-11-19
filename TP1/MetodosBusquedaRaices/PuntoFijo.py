@@ -11,25 +11,22 @@ def funcion_es_continua_en_intervalo(f, variable_ppal, intervalo, distancia_entr
 
     i = intervalo[0]
 
-    try:
+    while (i <= intervalo[1]):
 
-        while (i <= intervalo[1]):
-            limite_der = limit(f, variable_ppal, i, '+')
-            limite_izq = limit(f, variable_ppal, i, '-')
-            f_evaluable = lambdify(symbols('x'),f)
-            f_evaluada = f_evaluable(i)
-            limite  = limit(f, variable_ppal, i)
+        limite_der = limit(f, variable_ppal, i, '+')
+        limite_izq = limit(f, variable_ppal, i, '-')
+        f_evaluable = lambdify(symbols('x'),f)
+        f_evaluada = f_evaluable(i)
+        limite  = limit(f, variable_ppal, i)
+        cond_1 = abs(limite_der.evalf() - limite_izq.evalf())
+        cond_2 = abs(f_evaluada - limite.evalf())
 
-            if( limite_der != limite_izq or f_evaluada != limite):
-                es_continua = false
+        if( cond_1 > 1e-10 or cond_2 > 1e-10 ):
+            es_continua = false
 
-            i += distancia_entre_x
+        i += distancia_entre_x
 
-        return es_continua
-
-    except:
-        print("Oops! Ocurrio un problema al buscar continuidad", sys.exc_info()[0])
-        return false
+    return es_continua
 
 
 
@@ -106,4 +103,4 @@ def punto_fijo(f, intervalo, tolerancia, iteraciones=-1):
 
 if __name__ == "__main__":
 
-    print("la raiz hallada con p fijo es: " +  str(punto_fijo("x/2", (-1, 2), 1e-2, 20)))
+    print("la raiz hallada con p fijo es: " +  str(print(punto_fijo("4.25 * pi * x ** 2 - (pi * x ** 3) / 3 - 180.52",(4, 5), 1e-5))))

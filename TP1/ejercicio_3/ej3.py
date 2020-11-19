@@ -36,3 +36,6 @@ def test_raices():
 
     print("Hallando raices de f1 por metodo brentq incluido en scipy.optimize")
     print(brentq(f1, 0, 2 * RADIO))
+
+if __name__ == "__main__":
+    test_raices()
