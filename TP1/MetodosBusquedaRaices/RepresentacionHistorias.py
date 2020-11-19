@@ -14,13 +14,13 @@ def tabular_historia(historia, nombre_tabla):
     print(it_totales)
     corte = 7
     if len(historia) > MAXTABLA:
-        corte = len(historia) + 1 - 6
+        corte = len(historia) - 5
         historia = recortar_historia(historia)
 
     print("Tabulando método " + nombre_tabla + "\n")
 
     header = ['Iteracion', 'Aproximacion']
-    iteraciones = [*range(1, 7)] + [*range(corte, it_totales)]
+    iteraciones = [*range(1, 7)] + [*range(corte, it_totales + 1)]
     table = zip(iteraciones, historia)
 
     print(tabulate(table, headers=header, floatfmt=".16f"))
