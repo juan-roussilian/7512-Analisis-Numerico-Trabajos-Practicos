@@ -1,5 +1,3 @@
-import sys
-from TP1.MetodosBusquedaRaices.Biseccion import biseccion
 from sympy import *
 import math
 
@@ -28,8 +26,6 @@ def funcion_es_continua_en_intervalo(f, variable_ppal, intervalo, distancia_entr
 
     return es_continua
 
-
-
 def funcion_contenida_intervalo(g, variable_ppal, intervalo, distancia_entre_x):
     i = intervalo[0]
     g_evaluable = lambdify(variable_ppal, g)
@@ -42,8 +38,6 @@ def funcion_contenida_intervalo(g, variable_ppal, intervalo, distancia_entre_x):
         i += distancia_entre_x
 
     return esta_contenida
-
-
 
 def derivada_acotada_en_intervalo(g, variable_ppal, intervalo, distancia_entre_x):
     esta_acotada = true
@@ -66,7 +60,6 @@ def derivada_acotada_en_intervalo(g, variable_ppal, intervalo, distancia_entre_x
 
     return esta_acotada
 
-
 def existe_unico_p_fijo(g, variable_ppal, intervalo):
 
     if (funcion_es_continua_en_intervalo(g, variable_ppal, intervalo, 1) and
@@ -79,28 +72,31 @@ def existe_unico_p_fijo(g, variable_ppal, intervalo):
 
 def obtener_g(f):
     x = symbols('x')
-    expresion = x - sympify(f)
+    expresion = x - (sympify(f)/100)
     return expresion
 
-def punto_fijo_rec(g, semilla, tolerancia, iteraciones):
+def punto_fijo_rec(g, f, semilla, tolerancia, iteraciones):
 
-    Pn = g(semilla)
-    if abs(Pn <= tolerancia or iteraciones == 0):
+    f_evaluada = f.evalf(subs={symbols('x'):semilla})
+
+    if (abs(f_evaluada) <= tolerancia or iteraciones == 0):
         return semilla
-
-    return punto_fijo_rec(g, Pn, tolerancia, iteraciones - 1)
+    else:
+        siguiente = g(semilla)
+        return punto_fijo_rec(g,f, siguiente, tolerancia, iteraciones - 1)
 
 def punto_fijo(f, intervalo, tolerancia, iteraciones=-1):
 
     g = obtener_g(f)
+
     if(existe_unico_p_fijo(g,symbols('x'),intervalo)):
-        semilla = biseccion(lambdify(symbols('x'), g), intervalo, tolerancia, 3)
-        print("La raiz hallada como semilla es: " + str(semilla))
-        return punto_fijo_rec(lambdify(symbols('x'),g), semilla, tolerancia, iteraciones)
+        semilla = intervalo[0]
+        raiz = punto_fijo_rec(lambdify(symbols('x'),g), sympify(f), semilla, tolerancia, iteraciones)
+        return raiz
+
     else:
         return "No es posible aplicar punto fijo dada la falta de existencia y/o unicidad del punto fijo"
 
-
 if __name__ == "__main__":
 
-    print("la raiz hallada con p fijo es: " +  str(print(punto_fijo("4.25 * pi * x ** 2 - (pi * x ** 3) / 3 - 180.52",(4, 5), 1e-5))))
+    print("la raiz hallada con p fijo es: " +  str(print(punto_fijo("4.25 * pi * x ** 2 - (pi * x ** 3) / 3 - 180.52", (4,5), 1e-5, 30) ) )   )
