@@ -1,4 +1,5 @@
 import math
+from scipy.optimize import brentq
 
 from TP1.MetodosBusquedaRaices.Biseccion import biseccion
 from TP1.MetodosBusquedaRaices.NewtonRaphson import newton_raphson
@@ -32,3 +33,6 @@ def test_raices():
     print(punto_fijo("4.25 * pi * x ** 2 - (pi * x ** 3) / 3 - 180.52", (RADIO, 6), 1e-5, 200))
     print("Hallando raices de f1 por metodo de punto fijo con tolerancia 1e-13")
     print(punto_fijo("4.25 * pi * x ** 2 - (pi * x ** 3) / 3 - 180.52", (RADIO, 6), 1e-13, 200))
+
+    print("Hallando raices de f1 por metodo brentq incluido en scipy.optimize")
+    print(brentq(f1, 0, 2 * RADIO))
