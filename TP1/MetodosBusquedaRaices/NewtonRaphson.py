@@ -2,26 +2,27 @@ from sympy import *
 from TP1.MetodosBusquedaRaices.Biseccion import biseccion
 
 
-def newton_raphson_rec(f, f_prima, semilla, tolerancia, iteraciones):
+def newton_raphson_rec(f, f_prima, semilla, tolerancia, iteraciones, historia):
     x = symbols('x')
+    historia.append(semilla)
     if abs(f(semilla)) <= tolerancia or iteraciones == 0:
-        return semilla
+        return semilla, historia
 
     try:
         siguiente = semilla - f(semilla) / f_prima.evalf(subs={x: semilla})
     except ZeroDivisionError:
         print('El denominador resultó nulo para f\' en cierto punto, no se puede continuar, se devuelve último valor')
-        return semilla
+        return semilla, historia
 
-    return newton_raphson_rec(f, f_prima, siguiente, tolerancia, iteraciones - 1)
+    return newton_raphson_rec(f, f_prima, siguiente, tolerancia, iteraciones - 1, historia)
 
 
 def newton_raphson(f, intervalo, tolerancia, iteraciones=-1):
     x = symbols('x')
     f_prima = f(x).diff(x)
     # tal vez el numero de iteraciones para hallar la semilla se podria determinar dinamicamente
-    semilla = biseccion(f, (intervalo[0], intervalo[1]), tolerancia, 5)
-    return newton_raphson_rec(f, f_prima, semilla, tolerancia, iteraciones)
+    semilla, historia  = biseccion(f, (intervalo[0], intervalo[1]), tolerancia, 2)
+    return newton_raphson_rec(f, f_prima, semilla, tolerancia, iteraciones, historia)
 
 
 def f_test_lineal(x):
