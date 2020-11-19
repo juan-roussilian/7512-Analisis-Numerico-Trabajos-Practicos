@@ -81,9 +81,9 @@ def punto_fijo_rec(g, f, semilla, tolerancia, iteraciones):
 
     if (abs(f_evaluada) <= tolerancia or iteraciones == 0):
         return semilla
-
-    siguiente = g(semilla)
-    return punto_fijo_rec(g,f, siguiente, tolerancia, iteraciones - 1)
+    else:
+        siguiente = g(semilla)
+        return punto_fijo_rec(g,f, siguiente, tolerancia, iteraciones - 1)
 
 def punto_fijo(f, intervalo, tolerancia, iteraciones=-1):
 
@@ -99,4 +99,4 @@ def punto_fijo(f, intervalo, tolerancia, iteraciones=-1):
 
 if __name__ == "__main__":
 
-    print("la raiz hallada con p fijo es: " +  str(print(punto_fijo("4.25 * pi * x ** 2 - (pi * x ** 3) / 3 - 180.52", (4,5), 1e-5, 30))))
+    print("la raiz hallada con p fijo es: " +  str(print(punto_fijo("4.25 * pi * x ** 2 - (pi * x ** 3) / 3 - 180.52", (4,5), 1e-5, 30) ) )   )
