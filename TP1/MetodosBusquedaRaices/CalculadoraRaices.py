@@ -1,8 +1,23 @@
 import math
 import numpy as np
 
-def resolvente_convencional(coef_a, coef_b, coef_c):
+DIF_EXPONENTES = 6
 
+
+# def resolvente_alternativa(coef_a, coef_b, coef_c):
+#    discriminante = math.pow(coef_b, 2) - (4 * coef_a * coef_c)
+#
+#    if discriminante >= 0:
+#
+#        primer_raiz = - 2 * coef_c / (coef_b + math.sqrt(math.pow(coef_b, 2) - (4 * coef_a * coef_c)))
+#        segunda_raiz = - 2 * coef_c / (coef_b - math.sqrt(math.pow(coef_b, 2) - (4 * coef_a * coef_c)))
+#
+#        return primer_raiz, segunda_raiz
+#    else:
+#        return None
+
+
+def resolvente_convencional(coef_a, coef_b, coef_c):
     discriminante = math.pow(coef_b, 2) - (4 * coef_a * coef_c)
 
     if discriminante >= 0:
@@ -16,38 +31,36 @@ def resolvente_convencional(coef_a, coef_b, coef_c):
         return None
 
 
-def resolvente_alternativa(coef_a, coef_b, coef_c):
-
-    discriminante = math.pow(coef_b, 2) - (4 * coef_a * coef_c)
-
-    if discriminante >= 0:
-
-        primer_raiz = - 2 * coef_c / (coef_b + math.sqrt(math.pow(coef_b, 2) - (4 * coef_a * coef_c)))
-        segunda_raiz = - 2 * coef_c / (coef_b - math.sqrt(math.pow(coef_b, 2) - (4 * coef_a * coef_c)))
-
-        return  primer_raiz, segunda_raiz
-    else:
-        return None
+def resolvente_vieta(coef_a, coef_b, coef_c):
+    return -coef_b / coef_a, -coef_c / coef_b
 
 
-def calcular_raices(coef_a, coef_b, coef_c):
+def exponentes_dispares(coef_a, coef_b, coef_c):
+    return (np.log10(abs(coef_b)) - np.log10(abs(coef_a * coef_c))) > DIF_EXPONENTES
 
-    diferencia_exponentes = 6
 
-    if(coef_a == 0 or coef_c == 0):
-        if (np.log10(abs(coef_b)) - 0) > diferencia_exponentes :
-            return resolvente_alternativa(coef_a, coef_b, coef_c)
-        else:
-            return resolvente_convencional(coef_a, coef_b, coef_c)
+def calcular_raices(coef_a, coef_b, coef_c, tolerancia):
+    if abs(coef_b) < tolerancia:
 
-    if(coef_b == 0 ):
-        if (0 - np.log10(abs(coef_a * coef_c))) > diferencia_exponentes:
-            return resolvente_alternativa(coef_a, coef_b, coef_c)
-        else:
-            return resolvente_convencional(coef_a, coef_b, coef_c)
+        # p = c -> el polinomio es una constante
+        if abs(coef_a) < tolerancia:
+            return None
 
-    else:
-        if (np.log10(abs(coef_b)) - np.log10(abs(coef_a * coef_c))) > diferencia_exponentes:
-            return resolvente_alternativa(coef_a, coef_b, coef_c)
-        else:
-            return resolvente_convencional(coef_a, coef_b, coef_c)
+        # p = a * a^2 -> 0 raiz doble
+        elif abs(coef_c) < tolerancia:
+            return 0, 0
+
+    elif abs(coef_a) < tolerancia:
+
+        # p = bx -> 0 raiz simple
+        if abs(coef_c) < tolerancia:
+            return 0, None
+
+        # p = bx + c -> recta, raiz simple
+        return -coef_c / coef_b
+
+        # nada se anula, y b^2 > |ac|
+    if abs(coef_c) > tolerancia and exponentes_dispares(coef_a, coef_b, coef_c):
+        return resolvente_vieta(coef_a, coef_b, coef_c)
+
+    return resolvente_convencional(coef_a, coef_b, coef_c)
