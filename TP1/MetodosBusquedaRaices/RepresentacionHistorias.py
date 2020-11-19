@@ -5,20 +5,23 @@ MAXTABLA = 12
 
 
 def recortar_historia(hist):
-    return hist[:MAXTABLA / 2] + hist[MAXTABLA / 2:]
+    aux = hist[:6] + hist[-6:]
+    print(len(aux))
+    return aux
 
 
 def tabular_historia(historia, nombre_tabla):
+    print(len(historia))
     if len(historia) > MAXTABLA:
         historia = recortar_historia(historia)
 
-    print("Tabulando método" + nombre_tabla)
+    print("Tabulando método " + nombre_tabla + "\n")
 
-    header = ['Iteracion' 'Aproximacion']
-    iteraciones = range(len(historia))
+    header = ['Iteracion', 'Aproximacion']
+    iteraciones = range(1, len(historia) + 1)
     table = zip(iteraciones, historia)
 
-    print(tabulate(table, headers=header, floatfmt=".4f"))
+    print(tabulate(table, headers=header))
 
 
 def graficar_historias(diccionario_metodos_raices):
@@ -31,5 +34,5 @@ def graficar_historias(diccionario_metodos_raices):
     plt.figure()
 
     for metodo in diccionario_metodos_raices:
-        historia = diccionario_metodos_raices[metodo]
-        plt.plot(historia[:, 1], historia[:, 1], '-', lw=2, label=metodo)
+        historia = recortar_historia(diccionario_metodos_raices[metodo])
+        plt.plot(range(MAXTABLA), historia, '-', lw=2, label=metodo)
