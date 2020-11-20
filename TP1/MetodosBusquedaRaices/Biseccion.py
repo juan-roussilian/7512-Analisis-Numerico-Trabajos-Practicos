@@ -22,15 +22,3 @@ def biseccion(f, intervalo, tolerancia, iteraciones=-1):
         return None
     return biseccion_rec(f, intervalo[0], intervalo[1], tolerancia, iteraciones - 1, historia)
 
-
-def f_test_lineal(x):
-    return x - 4
-
-
-def f_test_logaritmica(x):
-    return math.log(x)
-
-
-def test_biseccion():
-    print(biseccion(f_test_lineal, (2, 20), 0.01))
-    print(biseccion(f_test_logaritmica, (0.1, 20), 0.01))

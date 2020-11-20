@@ -29,21 +29,3 @@ def newton_raphson_mod(f, intervalo, tolerancia, iteraciones=-1):
     semilla, historia = biseccion(f, (intervalo[0], intervalo[1]), tolerancia, 5)
     return newton_raphson_mod_rec(f, f_prima, f_prima_prima, semilla, tolerancia, iteraciones, historia)
 
-
-def f_test_lineal(x):
-    return x - 4
-
-
-def f_test_logaritmica(x):
-    return log(x)
-
-
-def f_test_pol(x):
-    return x ** 2 - 4 * x - 5
-
-
-def test_nr():
-    print(biseccion(f_test_lineal, (0.1, 20), 0.001))
-    print(newton_raphson_mod(f_test_lineal, (0.1, 20), 0.001))
-    print(newton_raphson_mod(f_test_pol, (0.1, 1000), 0.001))
-    print(newton_raphson_mod(f_test_logaritmica, (0.1, 20), 0.001))

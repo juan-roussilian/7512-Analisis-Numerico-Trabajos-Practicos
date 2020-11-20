@@ -26,21 +26,3 @@ def secante(f, intervalo, tolerancia, iteraciones=-1):
     historia = [hist_aux_1[len(hist_aux_1) - 1]]
     return secante_rec(f, primer_semilla, segunda_semilla, tolerancia, iteraciones, historia)
 
-
-def f_test_lineal(x):
-    return x - 4
-
-
-def f_test_logaritmica(x):
-    return log(x)
-
-
-def f_test_pol(x):
-    return x ** 2 - 4 * x - 5
-
-
-def test_secante():
-    print(biseccion(f_test_lineal, (0.1, 20), 0.001))
-    print(secante(f_test_lineal, (0.1, 20), 0.001))
-    print(secante(f_test_pol, (0.1, 1000), 0.001))
-    print(secante(f_test_logaritmica, (0.1, 20), 0.001))

@@ -1,3 +1,4 @@
+from TP1.MetodosBusquedaRaices.Biseccion import biseccion
 from TP1.MetodosBusquedaRaices.PuntoFijo import *
 
 

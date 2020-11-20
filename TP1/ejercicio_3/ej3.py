@@ -7,7 +7,7 @@ from TP1.MetodosBusquedaRaices.EstimacionConvergencia import estimar_orden_conve
 from TP1.MetodosBusquedaRaices.NewtonRaphson import newton_raphson
 from TP1.MetodosBusquedaRaices.NewtonRaphsonModificado import newton_raphson_mod
 from TP1.MetodosBusquedaRaices.PuntoFijo import punto_fijo
-from TP1.MetodosBusquedaRaices.RepresentacionHistorias import tabular_historia, #graficar
+from TP1.MetodosBusquedaRaices.RepresentacionHistorias import tabular_historia, graficar
 from TP1.MetodosBusquedaRaices.Secante import secante
 
 RADIO = 4.25
