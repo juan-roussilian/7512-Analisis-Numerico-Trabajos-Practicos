@@ -33,7 +33,7 @@ def test_raices():
     raiz, historia_bis_13 = biseccion(f1, (RADIO, 2 * RADIO), 1e-13)
     tabular_historia(historia_bis_13, "biseccion")
     graf["BIS13"] = historia_bis_13
-    # graficar_historias(graf)
+    print(estimar_orden_convergencia(historia_bis_13))
 
     print("Hallando raices de f1 por metodo de NR con tolerancia 1e-5")
     raiz, historia_nr_5 = newton_raphson(f1, (RADIO, 2 * RADIO), 1e-5)
@@ -51,6 +51,8 @@ def test_raices():
     print("Hallando raices de f1 por metodo de NR modificado con tolerancia 1e-13")
     raiz, historia_nrm_13 = newton_raphson_mod(f1, (RADIO, 2 * RADIO), 1e-13)
     tabular_historia(historia_nrm_13, "Newton-Raphson-MOD")
+    print(estimar_orden_convergencia(historia_nrm_13))
+
 
     print("Hallando raices de f1 por metodo de secante con tolerancia 1e-5")
     raiz, historia_sec_5 = secante(f1, (RADIO, 2 * RADIO), 1e-5)
@@ -59,6 +61,8 @@ def test_raices():
     print("Hallando raices de f1 por metodo de secante con tolerancia 1e-13")
     raiz, historia_sec_13 = secante(f1, (RADIO, 2 * RADIO), 1e-13)
     tabular_historia(historia_sec_13, "Secante")
+    print(estimar_orden_convergencia(historia_sec_13))
+
 
     print("Hallando raices de f1 por metodo de punto fijo con tolerancia 1e-5")
     raiz, historia_pf_5 = punto_fijo("4.25 * pi * x ** 2 - (pi * x ** 3) / 3 - 180.52", (RADIO, 6), 1e-5, 200)
@@ -66,7 +70,7 @@ def test_raices():
 
     print("Hallando raices de f1 por metodo de punto fijo con tolerancia 1e-13")
     raiz, historia_pf_13 = punto_fijo("4.25 * pi * x ** 2 - (pi * x ** 3) / 3 - 180.52", (RADIO, 6), 1e-13, 200)
-    tabular_historia(historia_pf_13, "Punto Fijo")
+    print(estimar_orden_convergencia(historia_pf_13))
 
     # print("Hallando raices de f1 por metodo brentq incluido en scipy.optimize")
     # print(brentq(f1, 0, 2 * RADIO))

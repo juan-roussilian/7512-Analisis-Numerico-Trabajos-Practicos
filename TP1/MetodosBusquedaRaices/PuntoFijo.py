@@ -80,12 +80,12 @@ def obtener_g(f):
 
 def punto_fijo_rec(g, f, semilla, tolerancia, iteraciones, historia):
     f_evaluada = f.evalf(subs={symbols('x'): semilla})
-    historia.append(semilla)
 
     if abs(f_evaluada) <= tolerancia or iteraciones == 0:
         return semilla, historia
     else:
         siguiente = g(semilla)
+        historia.append(siguiente)
         return punto_fijo_rec(g, f, siguiente, tolerancia, iteraciones - 1, historia)
 
 

@@ -4,12 +4,13 @@ from TP1.MetodosBusquedaRaices.Biseccion import biseccion
 
 def newton_raphson_rec(f, f_prima, semilla, tolerancia, iteraciones, historia):
     x = symbols('x')
-    historia.append(semilla)
     if abs(f(semilla)) <= tolerancia or iteraciones == 0:
         return semilla, historia
 
     try:
         siguiente = semilla - f(semilla) / f_prima.evalf(subs={x: semilla})
+        historia.append(siguiente)
+
     except ZeroDivisionError:
         print('El denominador resultó nulo para f\' en cierto punto, no se puede continuar, se devuelve último valor')
         return semilla, historia

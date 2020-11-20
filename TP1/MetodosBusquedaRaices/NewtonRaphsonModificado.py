@@ -4,7 +4,6 @@ from TP1.MetodosBusquedaRaices.Biseccion import biseccion
 
 def newton_raphson_mod_rec(f, f_prima, f_prima_prima, semilla, tolerancia, iteraciones, historia):
     x = symbols('x')
-    historia.append(semilla)
     if abs(f(semilla)) <= tolerancia or iteraciones == 0:
         return semilla, historia
 
@@ -13,6 +12,8 @@ def newton_raphson_mod_rec(f, f_prima, f_prima_prima, semilla, tolerancia, itera
 
     try:
         siguiente = semilla - f(semilla) * fp(semilla) / (fp(semilla) ** 2 - f(semilla) * fpp(semilla))
+        historia.append(siguiente)
+
     except ZeroDivisionError:
         print('El denominador resultó nulo para NRM en cierto punto, no se puede continuar, se devuelve último valor')
         return semilla, historia
