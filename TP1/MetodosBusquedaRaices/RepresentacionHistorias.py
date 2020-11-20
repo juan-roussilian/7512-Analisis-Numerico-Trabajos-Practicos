@@ -19,11 +19,11 @@ def tabular_historia(historia, nombre_tabla):
 
     print("Tabulando método " + nombre_tabla + "\n")
 
-    header = ['Iteracion', 'Aproximacion']
+    encabezados  = ['Iteracion', 'Aproximacion']
     iteraciones = [*range(1, 7)] + [*range(corte, it_totales + 1)]
-    table = zip(iteraciones, historia)
+    tabla = zip(iteraciones, historia)
 
-    print(tabulate(table, headers=header, floatfmt=".16f"))
+    print(tabulate(tabla, headers=encabezados, floatfmt=".16f"))
 
 
 def graficar_historias(diccionario_metodos_raices):

@@ -1,8 +1,8 @@
 import math
 import numpy as np
 
-DIF_EXPONENTES = 6
-
+DIF_EXPONENTES_1 = 6
+DIF_EXPONENTES_2 = 10
 
 # def resolvente_alternativa(coef_a, coef_b, coef_c):
 #    discriminante = math.pow(coef_b, 2) - (4 * coef_a * coef_c)
@@ -36,7 +36,7 @@ def resolvente_vieta(coef_a, coef_b, coef_c):
 
 
 def exponentes_dispares(coef_a, coef_b, coef_c):
-    return (np.log10(abs(coef_b)) - np.log10(abs(coef_a * coef_c))) > DIF_EXPONENTES
+    return (np.log10(abs(coef_b)) - np.log10(abs(coef_a * coef_c))) > DIF_EXPONENTES_1
 
 
 def calcular_raices(coef_a, coef_b, coef_c, tolerancia):
