@@ -1,26 +1,21 @@
 import math
 
 from matplotlib import pyplot as plt
-import numpy
+import numpy as np
 
 
-def estimar_orden_convergencia(historia):
+def estimar_orden_convergencia(historia, it):
 
-    alfa = []
-    contador_iter = 0
-    for n in range(2, len(historia) - 1):
-        e_n_mas_1 = historia[n+1] - historia[n]
-        e_n = historia[n] - historia[n-1]
-        e_n_menos_1 = historia[n-1] - historia[n-2]
+    alfa = np.zeros(it - 1, 2)
+    for n in range(2, it - 1):
+        e_n_mas_1 = historia[n+1][1] - historia[n][1]
+        e_n = historia[n][1] - historia[n-1][1]
+        e_n_menos_1 = historia[n-1][1] - historia[n-2][1]
 
         division_1 = e_n_mas_1/e_n
         division_2 = e_n/e_n_menos_1
-        log_1 =  math.log(numpy.abs(e_n/e_n_menos_1),10)
-        log_2 = math.log(numpy.abs(e_n_mas_1 / e_n),10)
+        alfa[n] = n, np.log10(np.abs(division_1)/ np.log10(np.abs(division_2)))
 
-        alfa.append(log_1 /log_2)
-
-    contador_iter += 1
     return alfa
 
 #def estimar_constante_convergencia(historia, alfa):
