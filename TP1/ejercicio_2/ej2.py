@@ -5,7 +5,12 @@ PRECISION_CALC_32_BIT = 1e-7
 
 if __name__ == "__main__":
 
-    coeficientes_polinomios = ["a=6 b=4 c=12","a=1 b=0 c=0","a=1 b=0 c=-1" "a=1 b=1e20 c=1e5","a=1 b=1e-56 c=-10"]
+    coeficientes_polinomios = ["a=6 b=4 c=12",
+                               "a=1 b=0 c=0",
+                               "a=1 b=0 c=-1",
+                               "a=1 b=1e20 c=1e5",
+                               "a=1 b=1e-56 c=-10"]
+
     raices_convencionales = []
     raices_correctas = []
     # Realizo pruebas con metodo convencional
