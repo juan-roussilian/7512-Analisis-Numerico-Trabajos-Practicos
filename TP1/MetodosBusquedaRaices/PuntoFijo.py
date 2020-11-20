@@ -85,8 +85,9 @@ def punto_fijo_rec(g, f, semilla, tolerancia, iteraciones, historia, it_actual):
     f_evaluada = f.evalf(subs={symbols('x'): semilla})
 
     if abs(f_evaluada) <= tolerancia or iteraciones == 0:
-        historia = historia[:it_actual + 1]
-        return semilla, historia, it_actual + 1
+        historia = historia[:it_actual]
+        print(historia)
+        return semilla, historia, it_actual
     else:
         siguiente = g(semilla)
         historia[it_actual] = (it_actual, siguiente)
@@ -99,9 +100,8 @@ def punto_fijo(f, intervalo, tolerancia, iteraciones=-1):
     if existe_unico_p_fijo(g, symbols('x'), intervalo):
         semilla = intervalo[0]
         historia = numpy.zeros((MAXIT, 2))
-        historia[0] = semilla
         raiz, historia, it_finales = punto_fijo_rec(lambdify(symbols('x'), g), sympify(f), semilla, tolerancia, iteraciones,
-                                        historia, 1)
+                                        historia, 0)
         return raiz, historia, it_finales
 
     else:

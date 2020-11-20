@@ -27,6 +27,4 @@ def newton_raphson(f, intervalo, tolerancia, iteraciones=-1):
     historia = numpy.zeros((MAXIT,2))
     # tal vez el numero de iteraciones para hallar la semilla se podria determinar dinamicamente
     semilla, hist_bis, _ = biseccion(f, (intervalo[0], intervalo[1]), tolerancia, IT_BISECCION_SEMILLA)
-    #print(hist_bis)
-    #numpy.append(hist_bis, historia)
     return newton_raphson_rec(f, f_prima, semilla, tolerancia, iteraciones, historia, 0)
