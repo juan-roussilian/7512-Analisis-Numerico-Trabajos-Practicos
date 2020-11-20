@@ -19,14 +19,14 @@ def tabular_historia(historia, nombre_tabla):
 
     print("Tabulando método " + nombre_tabla + "\n")
 
-    encabezados  = ['Iteracion', 'Aproximacion']
+    encabezados = ['Iteracion', 'Aproximacion']
     iteraciones = [*range(1, 7)] + [*range(corte, it_totales + 1)]
     tabla = zip(iteraciones, historia)
 
     print(tabulate(tabla, headers=encabezados, floatfmt=".16f"))
 
 
-def graficar_historias(diccionario_metodos_raices):
+def graficar(diccionario_historia):
     plt.title("Comparación entre métodos de búsqueda de raíces")
     plt.ylabel('Estimacion raiz [n]')
     plt.xlabel('Iteracion [n]')
@@ -35,7 +35,6 @@ def graficar_historias(diccionario_metodos_raices):
     plt.show()
     plt.figure()
 
-    for metodo in diccionario_metodos_raices:
-        print(metodo)
-        historia = recortar_historia(diccionario_metodos_raices[metodo])
+    for metodo in diccionario_historia:
+        historia = recortar_historia(diccionario_historia[metodo])
         plt.plot(range(MAXTABLA), historia, '-', lw=2, label=metodo)

@@ -23,5 +23,10 @@ def estimar_orden_convergencia(historia):
     contador_iter += 1
     return alfa
 
-
-#def estimar_constante_convergencia(historia):
+#def estimar_constante_convergencia(historia, alfa):
+#    constante = []
+#
+#    for n in range(1, len(historia) - 1):
+#        e_n_mas_1 = historia[n+1] - historia[n]
+#        e_n = historia[n] - historia[n-1]
+#        constante.append(abs(e_n_mas_1)/abs((e_n))**alfa)
