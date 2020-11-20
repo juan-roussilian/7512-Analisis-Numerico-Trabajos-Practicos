@@ -9,6 +9,7 @@ from TP1.MetodosBusquedaRaices.NewtonRaphsonModificado import newton_raphson_mod
 from TP1.MetodosBusquedaRaices.PuntoFijo import punto_fijo
 from TP1.MetodosBusquedaRaices.RepresentacionHistorias import tabular_historia, graficar
 from TP1.MetodosBusquedaRaices.Secante import secante
+from TP1.MetodosBusquedaRaices.CalculadoraRaices import *
 
 RADIO = 4.25
 
@@ -89,51 +90,9 @@ def test_raices(): #comentamos los graficos de convergencia pues no pudimos debu
     print("Hallando raices de f1 por metodo brentq incluido en scipy.optimize")
     print(brentq(f1, 0, 2 * RADIO))
 
-def test_raices_derivada():
-   graf = {}
-
-   print("Hallando raices de f1 por metodo de Bisección con tolerancia 1e-5")
-   raiz, historia_bis_5 = biseccion(f1_prima, (RADIO, 2 * RADIO), 1e-5)
-   tabular_historia(historia_bis_5, "biseccion")
-   #graf["BIS5"] = historia_bis_5
-
-   print("Hallando raices de f1 por metodo de Bisección con tolerancia 1e-13")
-   raiz, historia_bis_13 = biseccion(f1_prima, (RADIO, 2 * RADIO), 1e-13)
-   tabular_historia(historia_bis_13, "biseccion")
-   #graf["BIS13"] = historia_bis_13
-   # #graficar_historias(#graf)
-
-   print("Hallando raices de f1 por metodo de NR con tolerancia 1e-5")
-   raiz, historia_nr_5 = newton_raphson(f1_prima, (RADIO, 2 * RADIO), 1e-5)
-   tabular_historia(historia_nr_5, "Newton-Raphson")
-
-   print("Hallando raices de f1 por metodo de NR con tolerancia 1e-13")
-   raiz, historia_nr_13 = newton_raphson(f1_prima, (RADIO, 2 * RADIO), 1e-13)
-   tabular_historia(historia_nr_13, "Newton-Raphson")
-
-   print("Hallando raices de f1 por metodo de NR modificado con tolerancia 1e-5")
-   raiz, historia_nrm_5 = newton_raphson_mod(f1_prima, (RADIO, 2 * RADIO), 1e-5)
-   tabular_historia(historia_nrm_5, "Newton-Raphson-MOD")
-
-   print("Hallando raices de f1 por metodo de NR modificado con tolerancia 1e-13")
-   raiz, historia_nrm_13 = newton_raphson_mod(f1_prima, (RADIO, 2 * RADIO), 1e-13)
-   tabular_historia(historia_nrm_13, "Newton-Raphson-MOD")
-
-   print("Hallando raices de f1 por metodo de secante con tolerancia 1e-5")
-   raiz, historia_sec_5 = secante(f1_prima, (RADIO, 2 * RADIO), 1e-5)
-   tabular_historia(historia_sec_5, "Secante")
-
-   print("Hallando raices de f1 por metodo de secante con tolerancia 1e-13")
-   raiz, historia_sec_13 = secante(f1_prima, (RADIO, 2 * RADIO), 1e-13)
-   tabular_historia(historia_sec_13, "Secante")
-
-   print("Hallando raices de f1 por metodo de punto fijo con tolerancia 1e-5")
-   raiz, historia_pf_5 = punto_fijo("2 * math.pi * RADIO * x - math.pi * x ** 2", (RADIO, 6), 1e-5, 200)
-   tabular_historia(historia_pf_5, "Punto Fijo")
-
-   print("Hallando raices de f1 por metodo de punto fijo con tolerancia 1e-13")
-   raiz, historia_pf_13 = punto_fijo("2 * math.pi * RADIO * x - math.pi * x ** 2", (RADIO, 6), 1e-13, 200)
-   tabular_historia(historia_pf_13, "Punto Fijo")
+def raices_derivada():
+    print("La raices de la derivada calculada con la calculadora del punto 2" + str(calcular_raices(math.pi,2*math.pi*RADIO,0,1e-7)))
 
 if __name__ == "__main__":
     test_raices()
+    raices_derivada()
