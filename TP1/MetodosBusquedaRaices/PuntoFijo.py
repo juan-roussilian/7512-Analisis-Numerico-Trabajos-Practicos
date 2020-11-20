@@ -1,5 +1,8 @@
 from sympy import *
 import math
+import numpy
+
+MAXIT = 50
 
 
 # Debe recibir una funcion dada en expresion de simpy, con variable x
@@ -78,15 +81,16 @@ def obtener_g(f):
     return expresion
 
 
-def punto_fijo_rec(g, f, semilla, tolerancia, iteraciones, historia):
+def punto_fijo_rec(g, f, semilla, tolerancia, iteraciones, historia, it_actual):
     f_evaluada = f.evalf(subs={symbols('x'): semilla})
 
     if abs(f_evaluada) <= tolerancia or iteraciones == 0:
-        return semilla, historia
+        historia = historia[:it_actual + 1]
+        return semilla, historia, it_actual + 1
     else:
         siguiente = g(semilla)
-        historia.append(siguiente)
-        return punto_fijo_rec(g, f, siguiente, tolerancia, iteraciones - 1, historia)
+        historia[it_actual] = (it_actual, siguiente)
+        return punto_fijo_rec(g, f, siguiente, tolerancia, iteraciones - 1, historia, it_actual + 1)
 
 
 def punto_fijo(f, intervalo, tolerancia, iteraciones=-1):
@@ -94,10 +98,11 @@ def punto_fijo(f, intervalo, tolerancia, iteraciones=-1):
 
     if existe_unico_p_fijo(g, symbols('x'), intervalo):
         semilla = intervalo[0]
-        historia = [semilla]
-        raiz, historia = punto_fijo_rec(lambdify(symbols('x'), g), sympify(f), semilla, tolerancia, iteraciones,
-                                        historia)
-        return raiz, historia
+        historia = numpy.zeros((MAXIT, 2))
+        historia[0] = semilla
+        raiz, historia, it_finales = punto_fijo_rec(lambdify(symbols('x'), g), sympify(f), semilla, tolerancia, iteraciones,
+                                        historia, 1)
+        return raiz, historia, it_finales
 
     else:
         print("No es posible aplicar punto fijo dada la falta de existencia y/o unicidad del punto fijo")

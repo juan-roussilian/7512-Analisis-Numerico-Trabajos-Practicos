@@ -1,29 +1,21 @@
 from matplotlib import pyplot as plt
 from tabulate import tabulate
+import numpy
 
 MAXTABLA = 12
 
 
-def recortar_historia(hist):
-    aux = hist[:6] + hist[-6:]
-    return aux
-
-
-def tabular_historia(historia, nombre_tabla):
-    it_totales = len(historia)
-    print(it_totales)
-    corte = 7
-    if len(historia) > MAXTABLA:
-        corte = len(historia) - 5
-        historia = recortar_historia(historia)
-
-    print("Tabulando método " + nombre_tabla + "\n")
+def tabular_historia(historia, nombre_tabla, it_totales):
+    print("Tabulando método " + nombre_tabla)
+    print("Se llegó a la tolerancia buscada en " + str(it_totales) + " iteraciones \n")
 
     encabezados = ['Iteracion', 'Aproximacion']
-    iteraciones = [*range(1, 7)] + [*range(corte, it_totales + 1)]
-    tabla = zip(iteraciones, historia)
+    iteraciones = [*range(1, it_totales+1)]
+    aux = [x[1] for x in historia]
+    tabla = zip(iteraciones, aux)
 
     print(tabulate(tabla, headers=encabezados, floatfmt=".16f"))
+    print("La estimación final por el método " + nombre_tabla + " de la raíz fue" + str(aux[it_totales - 1]))
 
 
 def graficar(diccionario_historia):
@@ -34,7 +26,7 @@ def graficar(diccionario_historia):
     plt.legend(loc='best')
     plt.show()
     plt.figure()
-
     for metodo in diccionario_historia:
-        historia = recortar_historia(diccionario_historia[metodo])
-        plt.plot(range(MAXTABLA), historia, '-', lw=2, label=metodo)
+        historia = diccionario_historia[metodo]
+        print(historia)
+        plt.plot(historia[:, 0], historia[:,1], '-', lw=2, label=metodo)
