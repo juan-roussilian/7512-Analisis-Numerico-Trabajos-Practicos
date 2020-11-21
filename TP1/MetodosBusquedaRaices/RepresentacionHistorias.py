@@ -33,15 +33,15 @@ def tabular_historia_precision5(historia, nombre_tabla, it_totales):
         it_totales - 1] + "\n\n\n")
 
 
-def graficar(diccionario_historia, escalay="linear"):
-    plt.title("Comparación entre métodos de búsqueda de raíces")
-    plt.ylabel('Estimacion raiz [n]')
-    plt.xlabel('Iteracion [n]')
-    plt.grid(True)
-    plt.legend(loc='best')
-    plt.show()
-    plt.figure()
-    plt.yscale(escalay)
+def graficar(diccionario_historia, titulo, label_eje_y, escala_y="linear"):
+    plt.yscale(escala_y)
     for metodo in diccionario_historia:
         historia = diccionario_historia[metodo]
         plt.plot(historia[:, 0], historia[:, 1], '-', lw=2, label=metodo)
+    plt.title(titulo)
+    plt.ylabel(label_eje_y)
+    plt.xlabel('Iteracion [n]')
+    plt.grid(True)
+    plt.legend(loc='best')
+    plt.figure()
+    plt.show()
