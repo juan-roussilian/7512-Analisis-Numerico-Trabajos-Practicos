@@ -1,6 +1,3 @@
-import math
-
-from matplotlib import pyplot as plt
 import numpy as np
 
 
@@ -21,10 +18,12 @@ def estimar_orden_convergencia(historia, it):
    print("B")
    return alfa
 
-#def estimar_constante_convergencia(historia, alfa):
-#    constante = []
-#
-#    for n in range(1, len(historia) - 1):
-#        e_n_mas_1 = historia[n+1] - historia[n]
-#        e_n = historia[n] - historia[n-1]
-#        constante.append(abs(e_n_mas_1)/abs((e_n))**alfa)
+def estimar_constante_asintontica(historia, alfa):
+    constante =  np.zeros( (historia.size, 2))
+
+    for n in range(1, historia.size - 1):
+        e_n_mas_1 = historia[n+1][1] - historia[n][1]
+        e_n = historia[n][1] - historia[n-1][1]
+
+        constante.append(abs(e_n_mas_1)/abs((e_n)) ** alfa)
+    return constante
