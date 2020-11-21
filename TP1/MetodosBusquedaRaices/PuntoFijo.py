@@ -86,7 +86,6 @@ def punto_fijo_rec(g, f, semilla, tolerancia, iteraciones, historia, it_actual):
 
     if abs(f_evaluada) <= tolerancia or iteraciones == 0:
         historia = historia[:it_actual]
-        print(historia)
         return semilla, historia, it_actual
     else:
         siguiente = g(semilla)
