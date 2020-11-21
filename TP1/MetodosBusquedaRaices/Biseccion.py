@@ -1,4 +1,3 @@
-import math
 import numpy
 
 MAXIT = 50

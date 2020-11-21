@@ -17,10 +17,11 @@ def estimar_orden_convergencia(historia, it):
 
 def estimar_constante_asintontica(historia, alfa):
     constante = np.zeros((historia.size, 2))
+    aux = [x[1] for x in historia]
 
-    for n in range(1, historia.size - 1):
+    for n in range(1, len(aux) - 2):
         e_n_mas_1 = historia[n + 1][1] - historia[n][1]
         e_n = historia[n][1] - historia[n - 1][1]
+        constante[n] = (abs(e_n_mas_1) / abs((e_n)) ** alfa)
 
-        constante.append(abs(e_n_mas_1) / abs((e_n)) ** alfa)
     return constante
