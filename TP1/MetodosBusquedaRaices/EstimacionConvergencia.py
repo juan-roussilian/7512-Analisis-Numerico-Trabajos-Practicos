@@ -3,7 +3,6 @@ import numpy as np
 
 def estimar_orden_convergencia(historia, it):
 
-   print("A")
 
    alfa = np.zeros((it - 3, 2))
    for n in range(2, it - 1):
@@ -15,7 +14,6 @@ def estimar_orden_convergencia(historia, it):
         division_2 = e_n/e_n_menos_1
         alfa[n-2] = n, np.log10(np.abs(division_1))/ np.log10(np.abs(division_2))
 
-   print("B")
    return alfa
 
 def estimar_constante_asintontica(historia, alfa):

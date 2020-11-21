@@ -1,10 +1,7 @@
-import math
-import sys
-from sympy import *
-from matplotlib import pyplot as plt
 from scipy.optimize import brentq
 
 from TP1.MetodosBusquedaRaices.Biseccion import biseccion
+from TP1.MetodosBusquedaRaices.CalculadoraRaices import *
 from TP1.MetodosBusquedaRaices.EstimacionConvergencia import estimar_orden_convergencia
 from TP1.MetodosBusquedaRaices.NewtonRaphson import newton_raphson
 from TP1.MetodosBusquedaRaices.NewtonRaphsonModificado import newton_raphson_mod
@@ -12,7 +9,6 @@ from TP1.MetodosBusquedaRaices.PuntoFijo import punto_fijo
 from TP1.MetodosBusquedaRaices.RepresentacionHistorias import graficar, tabular_historia_precision5, \
     tabular_historia_precision13
 from TP1.MetodosBusquedaRaices.Secante import secante
-from TP1.MetodosBusquedaRaices.CalculadoraRaices import *
 
 RADIO = 4.25
 
@@ -92,8 +88,6 @@ def test_raices():  # comentamos los graficos de convergencia pues no pudimos de
     # graficar(graf_convergencia)
 
     graficar(graf_historia_5)
-    graficar(graf_historia_5)
-    graficar(graf_historia_13)
     graficar(graf_historia_13)
 
     graficar(graf_convergencia_13)
