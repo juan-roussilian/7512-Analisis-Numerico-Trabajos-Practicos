@@ -114,8 +114,8 @@ def ej_3_raices():  # comentamos los graficos de convergencia pues no pudimos de
     tabular_historia_precision13(historia_nrm_13, "Newton-Raphson-MOD", it_nrm_13)
     historias_tol_13["NRM13"] = historia_nrm_13
     convergencias_13["NRM13"] = estimar_orden_convergencia(historia_nrm_13, it_nrm_13)
-    convergencia_prom_sec_13 = calcular_convergencia_promedio(convergencias_13["SEC13"])
-    constantes_lambda_13["SEC13"] = estimar_constante_asintontica(historias_tol_13["SEC13"], convergencia_prom_sec_13)
+    convergencia_prom_nrm_13 = calcular_convergencia_promedio(convergencias_13["NRM13"])
+    constantes_lambda_13["NRM13"] = estimar_constante_asintontica(historias_tol_13["NRM13"], convergencia_prom_nrm_13)
     ##################################################################################################################
 
 

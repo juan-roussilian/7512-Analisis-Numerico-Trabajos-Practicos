@@ -35,9 +35,17 @@ def tabular_historia_precision5(historia, nombre_tabla, it_totales):
 
 def graficar(diccionario_historia, titulo, label_eje_y, escala_y="linear"):
     plt.yscale(escala_y)
+    i = 1
+    estilo_linea = 'dashed'
     for metodo in diccionario_historia:
+        if(i == 2 or i == 4 ):
+            estilo_linea = 'dotted'
+
         historia = diccionario_historia[metodo]
-        plt.plot(historia[:, 0], historia[:, 1], '-', lw=2, label=metodo)
+        plt.plot(historia[:, 0], historia[:, 1], ls=estilo_linea, lw=2, label=metodo)
+        i += 1
+        estilo_linea = 'dashed'
+
     plt.title(titulo)
     plt.ylabel(label_eje_y)
     plt.xlabel('Iteracion [n]')
