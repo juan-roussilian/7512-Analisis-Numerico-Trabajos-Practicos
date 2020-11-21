@@ -69,7 +69,7 @@ def ej_3_raices():  # comentamos los graficos de convergencia pues no pudimos de
     historias_tol_5["SEC5"] = historia_sec_5
     convergencias_5["SEC5"] = estimar_orden_convergencia(historia_sec_5,it_sec_5)
     convergencia_prom_sec_5 = calcular_convergencia_promedio(convergencias_5["SEC5"])
-    constantes_lambda_5["SEC5"] = estimar_constante_asintontica(convergencias_5["SEC5"],convergencia_prom_sec_5)
+    constantes_lambda_5["SEC5"] = estimar_constante_asintontica(historias_tol_5["SEC5"],convergencia_prom_sec_5)
 
     #NR-M
     raiz, historia_nrm_5, it_nrm_5 = newton_raphson_mod(f1, (RADIO, 2 * RADIO), 1e-5)
@@ -77,47 +77,54 @@ def ej_3_raices():  # comentamos los graficos de convergencia pues no pudimos de
     historias_tol_5["NRM5"] = historia_nrm_5
     convergencias_5["NRM5"] = estimar_orden_convergencia(historia_nrm_5,it_nrm_5)
     convergencia_prom_nrm_5 = calcular_convergencia_promedio(convergencias_5["NRM5"])
-    constantes_lambda_5["NRM5"] = estimar_constante_asintontica(convergencias_5["NRM5"], convergencia_prom_nrm_5)
+    constantes_lambda_5["NRM5"] = estimar_constante_asintontica(historias_tol_5["NRM5"], convergencia_prom_nrm_5)
 
 
     ################################### Tolerancia 1e-13########################################################
     #BIS
-    raiz, historia_bis_13, it = biseccion(f1, (0, 2 * RADIO), 1e-13)
-    tabular_historia_precision13(historia_bis_13, "Biseccion 1e-13", it)
+    raiz, historia_bis_13, it_bis_13 = biseccion(f1, (0, 2 * RADIO), 1e-13)
+    tabular_historia_precision13(historia_bis_13, "Biseccion 1e-13", it_bis_13)
     historias_tol_13["BIS13"] = historia_bis_13
-    convergencias_13["BIS"] = estimar_orden_convergencia(historia_bis_13, it)
-    # graf_convergencia["BIS5"] = estimar_orden_convergencia(historia_bis_5)
+    convergencias_13["BIS13"] = estimar_orden_convergencia(historia_bis_13, it_bis_13)
+    convergencia_prom_bis_13 = calcular_convergencia_promedio(convergencias_13["BIS13"])
+    constantes_lambda_13["BIS13"] = estimar_constante_asintontica(historias_tol_13["BIS13"],convergencia_prom_bis_13)
     #PF
-    raiz, historia_pf_13, it = punto_fijo("4.25 * pi * x ** 2 - (pi * x ** 3) / 3 - 180.52", (RADIO, 6), 1e-13)
-    tabular_historia_precision13(historia_pf_13, "Punto Fijo", it)
+    raiz, historia_pf_13, it_pf_13 = punto_fijo("4.25 * pi * x ** 2 - (pi * x ** 3) / 3 - 180.52", (RADIO, 6), 1e-13)
+    tabular_historia_precision13(historia_pf_13, "Punto Fijo", it_pf_13)
     historias_tol_13["PF13"] = historia_pf_13
-    convergencias_13["PF13"] = estimar_orden_convergencia(historia_pf_13, it)
+    convergencias_13["PF13"] = estimar_orden_convergencia(historia_pf_13, it_pf_13)
+    convergencia_prom_pf_13 = calcular_convergencia_promedio(convergencias_13["PF13"])
+    constantes_lambda_13["PF13"] = estimar_constante_asintontica(historias_tol_13["PF13"], convergencia_prom_pf_13)
     #NR
-    raiz, historia_nr_13, it = newton_raphson(f1, (RADIO, 2 * RADIO), 1e-13)
-    tabular_historia_precision13(historia_nr_13, "Newton-Raphson", it)
+    raiz, historia_nr_13, it_nr_13 = newton_raphson(f1, (RADIO, 2 * RADIO), 1e-13)
+    tabular_historia_precision13(historia_nr_13, "Newton-Raphson", it_nr_13)
     historias_tol_13["NR13"] = historia_nr_13
-    convergencias_13["NR13"] = estimar_orden_convergencia(historia_nr_13, it)
-    # graf_convergencia["NR5"] = estimar_orden_convergencia(historia_nr_5)
+    convergencias_13["NR13"] = estimar_orden_convergencia(historia_nr_13, it_nr_13)
+    convergencia_prom_nr_13 = calcular_convergencia_promedio(convergencias_13["NR13"])
+    constantes_lambda_13["NR13"] = estimar_constante_asintontica(historias_tol_13["NR13"], convergencia_prom_nr_13)
     # SEC
-    raiz, historia_sec_13, it = secante(f1, (RADIO, 2 * RADIO), 1e-13)
-    tabular_historia_precision13(historia_sec_13, "Secante", it)
+    raiz, historia_sec_13, it_sec_13 = secante(f1, (RADIO, 2 * RADIO), 1e-13)
+    tabular_historia_precision13(historia_sec_13, "Secante", it_sec_13)
     historias_tol_13["SEC13"] = historia_sec_13
-    convergencias_13["SEC13"] = estimar_orden_convergencia(historia_sec_13, it)
-    # print(estimar_orden_convergencia(historia_sec_13, it))
-    ##graf_convergencia["SEC5"] = estimar_orden_convergencia(historia_sec_5)
+    convergencias_13["SEC13"] = estimar_orden_convergencia(historia_sec_13, it_sec_13)
+    convergencia_prom_sec_13 = calcular_convergencia_promedio(convergencias_13["SEC13"])
+    constantes_lambda_13["SEC13"] = estimar_constante_asintontica(historias_tol_13["SEC13"], convergencia_prom_sec_13)
     #NR-M
-    raiz, historia_nrm_13, it = newton_raphson_mod(f1, (RADIO, 2 * RADIO), 1e-13)
-    tabular_historia_precision13(historia_nrm_13, "Newton-Raphson-MOD", it)
+    raiz, historia_nrm_13, it_nrm_13 = newton_raphson_mod(f1, (RADIO, 2 * RADIO), 1e-13)
+    tabular_historia_precision13(historia_nrm_13, "Newton-Raphson-MOD", it_nrm_13)
     historias_tol_13["NRM13"] = historia_nrm_13
-    convergencias_13["NRM13"] = estimar_orden_convergencia(historia_nrm_13, it)
-    ##graf_convergencia["NRM5"] = estimar_orden_convergencia(historia_nrm_5)
-
+    convergencias_13["NRM13"] = estimar_orden_convergencia(historia_nrm_13, it_nrm_13)
+    convergencia_prom_sec_13 = calcular_convergencia_promedio(convergencias_13["SEC13"])
+    constantes_lambda_13["SEC13"] = estimar_constante_asintontica(historias_tol_13["SEC13"], convergencia_prom_sec_13)
+    ##################################################################################################################
 
 
     graficar(historias_tol_5, "Comparación metodos busqueda raices con tolerancia 1e-5","Raiz estimada",escala_y="log")
-    #graficar(historias_tol_13,"log")
+    graficar(historias_tol_13,"Comparación metodos busqueda raices con tolerancia 1e-13","Raiz estimada",escala_y="log")
     graficar(convergencias_5, "Comparación convergencias metodos 1e-5","Orden convergencia")
-    graficar(constantes_lambda_5,"Constantes asintoticas con tolerancia 1e-5","Lambda")
+    graficar(convergencias_13, "Comparación convergencias metodos 1e-13", "Orden convergencia")
+    graficar(constantes_lambda_5, "Constantes asintoticas con tolerancia 1e-5", "Lambda")
+    graficar(constantes_lambda_13,"Constantes asintoticas con tolerancia 1e-13","Lambda")
 
 
     print("Hallando raices de f1 por metodo brentq incluido en scipy.optimize")
