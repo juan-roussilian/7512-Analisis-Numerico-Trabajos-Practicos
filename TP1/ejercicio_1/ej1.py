@@ -1,6 +1,6 @@
 import random
-import numpy
 from matplotlib import pyplot as plt
+
 
 def desbloquear_candado(clave):
     for j in range(9999):
@@ -9,16 +9,20 @@ def desbloquear_candado(clave):
             break
     return j
 
+
 def graficar(experimentos):
-    plt.title("histograma")
+    plt.title("Histograma de intentos")
     plt.hist(
         experimentos,
-        bins = 1000,
-        color ="blue",
-        edgecolor = "yellow",
+        bins=1000,
+        color="blue",
+        edgecolor="green",
         linewidth=1
     )
+    plt.xlabel("Intentos requeridos")
+    plt.ylabel("Experimentos")
     plt.show()
+
 
 def main():
     experimentos = []
@@ -28,9 +32,6 @@ def main():
         experimentos.append(desbloquear_candado(clave_candado))
     graficar(experimentos)
 
+
 if __name__ == "__main__":
     main()
-
-
-
-
