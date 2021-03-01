@@ -4,7 +4,7 @@
 
 # primera ecuación diferencial del sistema depredador-presa
 def f_dif(a, b):
-    return lambda x, y: a * x + b * x * y
+    return lambda x, y: a * x - b * x * y
 
 
 # segunda ecuación diferencial del sistema depredador-presa
@@ -12,10 +12,8 @@ def g_dif(c, d):
     return lambda x, y: c * x * y - d * y
 
 
-# RK-4 method
+# metodo RK-4
 def rk4(x0, y0, h, ti, tf, f, g):
-    # Calculating step size
-
     print('\n--------SOLUTION--------')
     print('-------------------------')
     print('x0\ty0\txn\tyn')
@@ -47,7 +45,6 @@ def rk4(x0, y0, h, ti, tf, f, g):
     # print('\nAt x=%.4f, y=%.4f' % (xn, yn))
 
 
-# Inputs
 if __name__ == "__main__":
     print('Ingrese las condiciones iniciales:')
     x_inicial = float(input('x0 = '))
@@ -65,6 +62,12 @@ if __name__ == "__main__":
     print('Ingrese los parámetros de la interacción para el crecimiento del depredador:')
     crecimiento_depredadores = float(input('d = '))
 
+    funcion_f = f_dif(crecimiento_presa, muerte_presas)
+    funcion_g = g_dif(muerte_depredadores, crecimiento_depredadores)
+
+    print(funcion_f)
+    print(funcion_g)
+
     print('Ingrese el incremento de cada paso:')
     h_incremento = float(input('h = '))
 
@@ -74,8 +77,5 @@ if __name__ == "__main__":
     print('Ingrese el tiempo final')
     t_final = float(input('tf= '))
 
-    funcion_f = f_dif(crecimiento_presa, muerte_presas)
-    funcion_g = g_dif(muerte_depredadores, crecimiento_depredadores)
-
-    # RK4 method call
+    # llamo al metodo
     rk4(x_inicial, y_inicial, h_incremento, t_inicial, t_final, funcion_f, funcion_g)
