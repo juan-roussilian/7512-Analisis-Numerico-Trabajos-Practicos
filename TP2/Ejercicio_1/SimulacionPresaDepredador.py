@@ -46,6 +46,6 @@ if __name__ == "__main__":
 
     # llamo al metodo
     historias_graficos = rk4(x_inicial, y_inicial, h_incremento, t_inicial, t_final, funcion_f, funcion_g)
-
-    # reutilizamos el mismo graficador del TP1 \(★ω★)/
-    graficar(historias_graficos, "aaa", "eee")
+    historias_presa_dep = historias_graficos
+    # Reutilizamos el mismo graficador del TP1 \(★ω★)/
+    graficar(historias_graficos, 'Oscilacion presa-depredador', 'Numero de individuos','Tiempo')
