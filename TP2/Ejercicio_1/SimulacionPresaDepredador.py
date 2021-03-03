@@ -89,4 +89,4 @@ if __name__ == "__main__":
 
     # Reutilizamos el mismo graficador del TP1 \(★ω★)/
     graficar(historias_presa_depredador, 'Oscilacion presa-depredador', 'Numero de individuos', 'Tiempo')
-    graficar(historia_estado_espacio,"Grafico Estado espacio","???")
+    graficar(historia_estado_espacio,"Estado espacio","Depredadores", "Presas")
