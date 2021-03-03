@@ -2,7 +2,6 @@ from scipy.optimize import brentq
 
 from TP1.MetodosBusquedaRaices.Biseccion import biseccion
 from TP1.MetodosBusquedaRaices.CalculadoraRaices import *
-from TP1.MetodosBusquedaRaices.EstimacionConvergencia import estimar_orden_convergencia
 from TP1.MetodosBusquedaRaices.EstimacionConvergencia import estimar_orden_convergencia, estimar_constante_asintontica
 from TP1.MetodosBusquedaRaices.NewtonRaphson import newton_raphson
 from TP1.MetodosBusquedaRaices.NewtonRaphsonModificado import newton_raphson_mod
