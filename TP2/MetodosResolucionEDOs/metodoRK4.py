@@ -1,6 +1,6 @@
 import numpy as np
 
-# metodo RK-4
+# Metodo RK-4
 def rk4(x0, y0, h, ti, tf, f, g):
     iteraciones = int((tf - ti) / h) + 1
 
