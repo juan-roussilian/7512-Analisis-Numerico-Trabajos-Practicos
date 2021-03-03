@@ -1,6 +1,6 @@
-# RK-4 method python program
+import numpy as np
+from TP1.MetodosBusquedaRaices.RepresentacionHistorias import graficar
 
-# function to be solved
 
 # primera ecuación diferencial del sistema depredador-presa
 def f_dif(a, b):
@@ -14,12 +14,22 @@ def g_dif(c, d):
 
 # metodo RK-4
 def rk4(x0, y0, h, ti, tf, f, g):
+    iteraciones = int((tf - ti) / h) + 1
+
+    historia_x = np.zeros((iteraciones, 2))
+    historia_y = np.zeros((iteraciones, 2))
+    estado_espacio = np.zeros((iteraciones, 2))
+
     print('\n--------SOLUTION--------')
     print('-------------------------')
-    print('x0\ty0\txn\tyn')
+    print('x0\ty0')
     print('-------------------------')
 
-    while ti < tf:
+    for i in range(iteraciones):
+        historia_x[i] = (ti, x0)
+        historia_y[i] = (ti, y0)
+        estado_espacio[i] = (x0, y0)
+
         m1 = f(x0, y0)
         k1 = g(x0, y0)
 
@@ -35,18 +45,16 @@ def rk4(x0, y0, h, ti, tf, f, g):
         k = (k1 + 2 * k2 + 2 * k3 + k4) * (h / 6)
         m = (m1 + 2 * m2 + 2 * m3 + m4) * (h / 6)
 
-        #a cual le sumo cual????
-        yn = y0 + k
-        xn = x0 + m
-
-        print('%.4f\t%.4f\t%.4f\t%.4f' % (x0, y0, xn, yn))
+        print('%.4f\t%.4f' % (x0, y0))
         print('-------------------------')
 
-        y0 = yn
-        x0 = xn
+        # a cual le sumo cual????
+        y0 = y0 + k
+        x0 = x0 + m
+
         ti = ti + h
 
-    # print('\nAt x=%.4f, y=%.4f' % (xn, yn))
+    return {'Presas': historia_x, 'Depredadores': historia_y, 'Estado_Espacio': estado_espacio}
 
 
 if __name__ == "__main__":
@@ -82,4 +90,7 @@ if __name__ == "__main__":
     t_final = float(input('tf= '))
 
     # llamo al metodo
-    rk4(x_inicial, y_inicial, h_incremento, t_inicial, t_final, funcion_f, funcion_g)
+    historias_graficos = rk4(x_inicial, y_inicial, h_incremento, t_inicial, t_final, funcion_f, funcion_g)
+
+    # reutilizamos el mismo graficador del TP1 \(★ω★)/
+    graficar(historias_graficos, "aaa", "eee")
