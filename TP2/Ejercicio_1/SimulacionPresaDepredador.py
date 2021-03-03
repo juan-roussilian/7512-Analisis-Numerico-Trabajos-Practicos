@@ -36,6 +36,7 @@ def pedir_respuesta_afirmativa_negativa():
 
 
 if __name__ == "__main__":
+
     print('Desea realizar la simulacion con los parametros del item A?')
 
     if(pedir_respuesta_afirmativa_negativa() == 'S'):
@@ -78,8 +79,14 @@ if __name__ == "__main__":
     # Creo las funciones en base a los parametros
     funcion_f = f_dif(crecimiento_presa, muerte_presas)
     funcion_g = g_dif(muerte_depredadores, crecimiento_depredadores)
+
     # Llamo al metodo
     historias_graficos = rk4(x_inicial, y_inicial, h_incremento, t_inicial, t_final, funcion_f, funcion_g)
 
-    # reutilizamos el mismo graficador del TP1 \(★ω★)/
-    graficar(historias_graficos, "aaa", "eee")
+    # Separo el diccionario de historias por grafico, ya que el graficador requiere diccionarios de estas
+    historias_presa_depredador = {x:historias_graficos[x] for x in ['Presas','Depredadores']}
+    historia_estado_espacio = {x:historias_graficos[x] for x in ['Estado_Espacio']}
+
+    # Reutilizamos el mismo graficador del TP1 \(★ω★)/
+    graficar(historias_presa_depredador, 'Oscilacion presa-depredador', 'Numero de individuos', 'Tiempo')
+    graficar(historia_estado_espacio,"Grafico Estado espacio","???")
