@@ -1,6 +1,5 @@
 from matplotlib import pyplot as plt
 from tabulate import tabulate
-import numpy
 
 MAXTABLA = 12
 
@@ -33,14 +32,14 @@ def tabular_historia_precision5(historia, nombre_tabla, it_totales):
         it_totales - 1] + "\n\n\n")
 
 
-def graficar(diccionario_historia, titulo, label_eje_y, escala_y="linear"):
+def graficar(diccionario_historia, titulo, label_eje_y, label_eje_x='Iteracion [n]', escala_y='linear'):
+    plt.figure()
     plt.yscale(escala_y)
     i = 1
     estilo_linea = 'dashed'
     for metodo in diccionario_historia:
         if(i == 2 or i == 4 ):
             estilo_linea = 'dotted'
-
         historia = diccionario_historia[metodo]
         plt.plot(historia[:, 0], historia[:, 1], ls=estilo_linea, lw=2, label=metodo)
         i += 1
@@ -48,8 +47,7 @@ def graficar(diccionario_historia, titulo, label_eje_y, escala_y="linear"):
 
     plt.title(titulo)
     plt.ylabel(label_eje_y)
-    plt.xlabel('Iteracion [n]')
+    plt.xlabel(label_eje_x)
     plt.grid(True)
     plt.legend(loc='best')
-    plt.figure()
     plt.show()
