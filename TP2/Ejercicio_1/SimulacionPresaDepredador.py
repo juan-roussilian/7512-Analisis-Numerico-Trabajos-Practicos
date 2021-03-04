@@ -84,7 +84,7 @@ if __name__ == "__main__":
     while usuario_quiere_simular:
 
         print('Desea realizar la simulacion con los parametros del item A, del item D, o con ' +
-              'parametros manualmente cargados?')
+              'parametros manualmente cargados? (A/D/M)')
         comando_usuario = pedir_comando()
 
         if comando_usuario == 'A':
@@ -99,7 +99,7 @@ if __name__ == "__main__":
             parametros['y_inicial'] = pedir_input_numerico('y0')
 
             print('Ingrese la razón de crecimiento de las presas:')
-            parametros['crecimiento_presa'] = float(input('a = '))
+            parametros['crecimiento_presa'] = pedir_input_numerico('a')
 
             print('Ingrese los parámetros de la interacción para la muerte de presas:')
             parametros['muerte_presas'] = pedir_input_numerico('b')
