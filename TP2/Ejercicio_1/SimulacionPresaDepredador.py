@@ -55,8 +55,8 @@ def obtener_parametros_item_a():
 
 def obtener_parametros_item_d():
     parametros_item_d = {
-        'x_inicial': 4,
-        'y_inicial': 2,
+        'x_inicial': 2,
+        'y_inicial': 1,
         'crecimiento_presa': 2.4,
         'muerte_presas': 1.2,
         'crecimiento_depredadores': 1.6,
