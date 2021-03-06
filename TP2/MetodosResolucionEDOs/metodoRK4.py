@@ -36,7 +36,6 @@ def rk4(x0, y0, h, ti, tf, f, g):
         print('%.4f\t%.4f' % (x0, y0))
         print('-------------------------')
 
-        # a cual le sumo cual????
         y0 = y0 + k
         x0 = x0 + m
 
