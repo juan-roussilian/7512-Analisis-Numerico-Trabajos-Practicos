@@ -1,2 +1,2 @@
 # analisis-numerico-trabajos-practicos
-Un repo re divertido para gestionar el codigo del tp mediante el sistema de control de versiones
+Repositorio para trabajos practicos que implementan metodos numericos en python para la materia Analisis Numerico I
